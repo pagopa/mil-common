@@ -19,6 +19,14 @@ import javax.ws.rs.HeaderParam;
  */
 public class CommonHeader {
 	/*
+	 * Request ID
+	 */
+	@HeaderParam("RequestId")
+	@NotNull(message = "RequestId must not be null")
+	@Pattern(regexp = "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$" , message = "RequestId must match {regexp}")
+	private String requestId;
+	
+	/*
 	 * Version of the required API
 	 */
 	@HeaderParam("Version")
@@ -50,6 +58,22 @@ public class CommonHeader {
 	@Pattern(regexp = "^[0-9a-zA-Z]{8}$", message = "TerminalId must match {regexp}")
 	private String terminalId;
 
+	/**
+	 * 
+	 * @return
+	 */
+	public String getRequestId() {
+		return requestId;
+	}
+
+	/**
+	 * 
+	 * @param requestId
+	 */
+	public void setRequestId(String requestId) {
+		this.requestId = requestId;
+	}
+	
 	/**
 	 * 
 	 * @return
@@ -120,6 +144,7 @@ public class CommonHeader {
 	@Override
 	public String toString() {
 		return new StringJoiner(", ", CommonHeader.class.getSimpleName() + "[", "]")
+			.add("requestId='" + requestId + "'")
 			.add("version='" + version + "'")
 			.add("acquirerId='" + acquirerId + "'")
 			.add("channel=" + channel)
