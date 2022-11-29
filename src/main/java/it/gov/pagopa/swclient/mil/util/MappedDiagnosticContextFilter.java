@@ -27,6 +27,6 @@ public class MappedDiagnosticContextFilter implements ContainerRequestFilter {
 		if (requestId == null) {
 			requestId = "null";
 		}
-	    MDC.put("requestId", requestId);  
+		MDC.put("requestId", requestId);
 	}
 }
