@@ -3,7 +3,7 @@
  *
  * 26 nov 2022
  */
-package it.gov.pagopa.swclient.mil.dto;
+package it.gov.pagopa.swclient.mil.bean;
 
 import java.util.List;
 

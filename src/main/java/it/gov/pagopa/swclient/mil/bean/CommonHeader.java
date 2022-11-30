@@ -3,14 +3,14 @@
  *
  * 26 nov 2022
  */
-package it.gov.pagopa.swclient.mil.dto;
+package it.gov.pagopa.swclient.mil.bean;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.ws.rs.HeaderParam;
 
-import it.gov.pagopa.swclient.mil.util.ErrorCode;
+import it.gov.pagopa.swclient.mil.ErrorCode;
 
 /**
  * Common header attributes
