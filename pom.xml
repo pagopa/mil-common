@@ -4,11 +4,16 @@
 	<parent>
 		<groupId>it.gov.pagopa.swclient.mil</groupId>
 		<artifactId>bom</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
+	
+	<properties>
+		<!-- WARNING: This must be equal to parent/version value! -->
+		<bom.version>1.0.0</bom.version>
+	</properties>
 
 	<artifactId>common</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.2</version>
 	<packaging>jar</packaging>
 
 	<description>Common classes for Multi-channel Integration Layer of SW Client Project</description>
@@ -38,6 +43,30 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>2.0.0-M3</version>
+				<configuration>
+					<mavenHome>${maven.home}</mavenHome>
+					<goals>install</goals>
+				</configuration>
+				<executions>
+					<execution>
+						<id>clone_and_install_mil-bom</id>
+						<phase>validate</phase>
+						<configuration>
+							<connectionUrl>scm:git:https://github.com/pagopa/mil-bom.git</connectionUrl>
+							<scmVersionType>tag</scmVersionType>
+							<scmVersion>${bom.version}</scmVersion>
+						</configuration>
+						<goals>
+							<goal>bootstrap</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>${quarkus.platform.group-id}</groupId>
 				<artifactId>quarkus-maven-plugin</artifactId>
