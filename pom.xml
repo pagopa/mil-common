@@ -3,7 +3,7 @@
 
 	<groupId>it.gov.pagopa.swclient.mil</groupId>
 	<artifactId>common</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>jar</packaging>
 
 	<description>Common classes for Multi-channel Integration Layer of SW Client Project</description>
@@ -26,10 +26,9 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
 		<quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-		<quarkus.platform.version>2.14.1.Final</quarkus.platform.version>
+		<quarkus.platform.version>2.14.3.Final</quarkus.platform.version>
 		<skipITs>true</skipITs>
 		<surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-		<common.version>1.0.2</common.version>
 	</properties>
 
 	<dependencyManagement>
