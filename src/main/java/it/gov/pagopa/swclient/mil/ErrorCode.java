@@ -26,6 +26,9 @@ public final class ErrorCode {
 
 	public static final String TERMINAL_ID_MUST_NOT_BE_NULL = MODULE_ID + "000009";
 	public static final String TERMINAL_ID_MUST_MATCH_REGEXP = MODULE_ID + "00000A";
+	
+	public static final String MERCHANT_ID_MUST_NOT_BE_NULL_FOR_POS = MODULE_ID + "00000B";
+	public static final String MERCHANT_ID_MUST_MATCH_REGEXP = MODULE_ID + "00000C";
 
 	private ErrorCode() {
 	}

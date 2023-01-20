@@ -11,12 +11,14 @@ import javax.validation.constraints.Size;
 import javax.ws.rs.HeaderParam;
 
 import it.gov.pagopa.swclient.mil.ErrorCode;
+import it.gov.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
 
 /**
  * Common header attributes
  * 
  * @author Antonio Tarricone
  */
+@MerchantIdNotNullForPos(message = "[" + ErrorCode.MERCHANT_ID_MUST_NOT_BE_NULL_FOR_POS + "] If Channel equals to POS, MerchantId must not be null")
 public class CommonHeader {
 	/*
 	 * Request ID
@@ -51,11 +53,18 @@ public class CommonHeader {
 	private String channel;
 
 	/*
-	 * ID of the terminal originating the transaction. It must be unique per acquirer and channel.
+	 * Merchant ID originating the transaction. If Channel equals to POS, MerchantId must not be null.
+	 */
+	@HeaderParam("MerchantId")
+	@Pattern(regexp = "^[0-9a-zA-Z]{4,8}$", message = "[" + ErrorCode.MERCHANT_ID_MUST_MATCH_REGEXP + "] MerchantId must match \"{regexp}\"")
+	private String merchantId;
+	
+	/*
+	 * ID of the terminal originating the transaction. It must be unique per acquirer, channel and merchant if present.
 	 */
 	@HeaderParam("TerminalId")
 	@NotNull(message = "[" + ErrorCode.TERMINAL_ID_MUST_NOT_BE_NULL + "] TerminalId must not be null")
-	@Pattern(regexp = "^[0-9a-zA-Z]{8}$", message = "[" + ErrorCode.TERMINAL_ID_MUST_MATCH_REGEXP + "] TerminalId must match \"{regexp}\"")
+	@Pattern(regexp = "^[0-9a-zA-Z]{4,8}$", message = "[" + ErrorCode.TERMINAL_ID_MUST_MATCH_REGEXP + "] TerminalId must match \"{regexp}\"")
 	private String terminalId;
 
 	/**
@@ -113,6 +122,20 @@ public class CommonHeader {
 	public void setChannel(String channel) {
 		this.channel = channel;
 	}
+	
+	/**
+	 * @return the merchantId
+	 */
+	public String getMerchantId() {
+		return merchantId;
+	}
+
+	/**
+	 * @param merchantId the merchantId to set
+	 */
+	public void setMerchantId(String merchantId) {
+		this.merchantId = merchantId;
+	}
 
 	/**
 	 * @return the terminalId
@@ -131,7 +154,7 @@ public class CommonHeader {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CommonHeader [requestId=").append(requestId).append(", version=").append(version).append(", acquirerId=").append(acquirerId).append(", channel=").append(channel).append(", terminalId=").append(terminalId).append("]");
+		builder.append("CommonHeader [requestId=").append(requestId).append(", version=").append(version).append(", acquirerId=").append(acquirerId).append(", channel=").append(channel).append(", merchantId=").append(merchantId).append(", terminalId=").append(terminalId).append("]");
 		return builder.toString();
 	}
 }
