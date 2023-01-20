@@ -30,6 +30,14 @@
 		<skipITs>true</skipITs>
 		<surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
 	</properties>
+	
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub PagoPA Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/pagopa/mil</url>
+		</repository>
+	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
