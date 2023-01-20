@@ -81,3 +81,11 @@ jobs:
             @semantic-release/release-notes-generator@10.0.3
             @semantic-release/git@10.0.1
           dry_run: false
+
+      #
+      # Publish the package.
+      #
+      - name: Publish the package
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          mvn clean package deploy
