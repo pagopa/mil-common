@@ -1,12 +1,11 @@
 name: Release a new version
 
 on:
-  #pull_request:
-  #  types:
-  #    - closed
-  #  branches:
-  #    - main
-  workflow_dispatch
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
 
 jobs:
   release:
@@ -86,11 +85,11 @@ jobs:
       #
       # Publish the package.
       #
-      - name: Publish the package
-        if: steps.semantic.outputs.new_release_published == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p ~/.m2
-          echo "<settings><servers><server><id>github</id><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-          mvn clean package deploy -DrepositoryId=github
+      #- name: Publish the package
+      #  if: steps.semantic.outputs.new_release_published == 'true'
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  run: |
+      #    mkdir -p ~/.m2
+      #    echo "<settings><servers><server><id>github</id><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+      #    mvn clean package deploy -DrepositoryId=github
