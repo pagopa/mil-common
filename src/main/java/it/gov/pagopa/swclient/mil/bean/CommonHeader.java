@@ -56,7 +56,7 @@ public class CommonHeader {
 	 * Merchant ID originating the transaction. If Channel equals to POS, MerchantId must not be null.
 	 */
 	@HeaderParam("MerchantId")
-	@Pattern(regexp = "^[0-9a-zA-Z]{4,8}$", message = "[" + ErrorCode.MERCHANT_ID_MUST_MATCH_REGEXP + "] MerchantId must match \"{regexp}\"")
+	@Pattern(regexp = "^[0-9a-zA-Z]{1,15}$", message = "[" + ErrorCode.MERCHANT_ID_MUST_MATCH_REGEXP + "] MerchantId must match \"{regexp}\"")
 	private String merchantId;
 	
 	/*
@@ -64,7 +64,7 @@ public class CommonHeader {
 	 */
 	@HeaderParam("TerminalId")
 	@NotNull(message = "[" + ErrorCode.TERMINAL_ID_MUST_NOT_BE_NULL + "] TerminalId must not be null")
-	@Pattern(regexp = "^[0-9a-zA-Z]{4,8}$", message = "[" + ErrorCode.TERMINAL_ID_MUST_MATCH_REGEXP + "] TerminalId must match \"{regexp}\"")
+	@Pattern(regexp = "^[0-9a-zA-Z]{1,8}$", message = "[" + ErrorCode.TERMINAL_ID_MUST_MATCH_REGEXP + "] TerminalId must match \"{regexp}\"")
 	private String terminalId;
 
 	/**
