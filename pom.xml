@@ -30,8 +30,8 @@
 		<skipITs>true</skipITs>
 		<surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
 	</properties>
-	
-	<!--
+
+  <!--
 	<distributionManagement>
 		<repository>
 			<id>github</id>
