@@ -1,11 +1,11 @@
 name: Release a new version
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
+  #pull_request:
+  #  types:
+  #    - closed
+  #  branches:
+  #    - main
 
 jobs:
   release:
