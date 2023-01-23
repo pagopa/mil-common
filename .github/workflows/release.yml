@@ -91,5 +91,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p ~/.m2
-          echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-          mvn clean package deploy
+          echo "<settings><servers><server><id>github</id><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+          mvn clean package deploy -DrepositoryId=github
