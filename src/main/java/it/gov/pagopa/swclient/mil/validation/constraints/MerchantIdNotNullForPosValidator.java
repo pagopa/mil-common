@@ -8,6 +8,7 @@ package it.gov.pagopa.swclient.mil.validation.constraints;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import it.gov.pagopa.swclient.mil.bean.Channel;
 import it.gov.pagopa.swclient.mil.bean.CommonHeader;
 
 /**
@@ -16,10 +17,13 @@ import it.gov.pagopa.swclient.mil.bean.CommonHeader;
  * @author Antonio Tarricone
  */
 public class MerchantIdNotNullForPosValidator implements ConstraintValidator<MerchantIdNotNullForPos, CommonHeader> {
+	/**
+	 * @see javax.validation.ConstraintValidator#isValid(Object, ConstraintValidatorContext)
+	 */
 	@Override
 	public boolean isValid(CommonHeader commonHeader, ConstraintValidatorContext context) {
 		String channel = commonHeader.getChannel();
 		String merchantId = commonHeader.getMerchantId();
-		return !(channel != null && channel.equals("POS") && merchantId == null);
+		return !(channel != null && channel.equals(Channel.POS) && merchantId == null);
 	}
 }
