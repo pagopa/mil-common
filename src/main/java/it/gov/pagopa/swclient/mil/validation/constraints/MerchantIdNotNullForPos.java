@@ -23,9 +23,13 @@ import javax.validation.Payload;
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-@Constraint(validatedBy = { MerchantIdNotNullForPosValidator.class })
+@Constraint(validatedBy = {
+	MerchantIdNotNullForPosValidator.class
+})
 public @interface MerchantIdNotNullForPos {
 	String message() default "";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
 }

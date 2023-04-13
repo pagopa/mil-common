@@ -24,12 +24,12 @@ public class Errors {
 	 * List of error codes
 	 */
 	private List<String> errors;
-	
+
 	/*
 	 * List of error descriptions.
 	 */
 	private List<String> descriptions;
-	
+
 	/**
 	 * 
 	 */
@@ -42,7 +42,7 @@ public class Errors {
 	public Errors(List<String> errors) {
 		this.errors = errors;
 	}
-	
+
 	/**
 	 * @param errors
 	 * @param descriptions
@@ -51,7 +51,7 @@ public class Errors {
 		this.errors = errors;
 		this.descriptions = descriptions;
 	}
-	
+
 	/**
 	 * @param error
 	 * @param description
@@ -60,7 +60,7 @@ public class Errors {
 		errors = List.of(error);
 		descriptions = List.of(description);
 	}
-	
+
 	/**
 	 * @return the errors
 	 */
@@ -74,7 +74,7 @@ public class Errors {
 	public void setErrors(List<String> errors) {
 		this.errors = errors;
 	}
-	
+
 	/**
 	 * @return the descriptions
 	 */

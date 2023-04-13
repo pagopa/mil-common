@@ -5,12 +5,9 @@
  */
 package it.gov.pagopa.swclient.mil;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolationException;
@@ -36,12 +33,12 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 		 * 
 		 */
 		private String code;
-		
+
 		/*
 		 * 
 		 */
 		private String description;
-		
+
 		/**
 		 * @param code
 		 * @param description
