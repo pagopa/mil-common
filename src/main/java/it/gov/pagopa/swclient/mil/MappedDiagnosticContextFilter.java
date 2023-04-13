@@ -25,7 +25,7 @@ public class MappedDiagnosticContextFilter implements ContainerRequestFilter {
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 		String requestId = requestContext.getHeaderString("RequestId");
 		if (requestId == null) {
-			requestId = "null";
+			requestId = "n/a";
 		}
 		MDC.put("requestId", requestId);
 	}
