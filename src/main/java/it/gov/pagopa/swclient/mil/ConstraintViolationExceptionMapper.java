@@ -86,7 +86,9 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
 		return Response
 			.status(Response.Status.BAD_REQUEST.getStatusCode())
-			.entity(new Errors(errors.keySet().stream().toList(), errors.values().stream().toList()))
+			.entity(new Errors(
+				errors.keySet().stream().toList(),
+				errors.values().stream().toList()))
 			.build();
 	}
 }
