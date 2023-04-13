@@ -154,8 +154,13 @@ public class CommonHeader {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CommonHeader [requestId=").append(requestId).append(", version=").append(version).append(", acquirerId=").append(acquirerId).append(", channel=").append(channel).append(", merchantId=").append(merchantId).append(", terminalId=").append(terminalId).append("]");
-		return builder.toString();
+		return new StringBuilder("CommonHeader [requestId=").append(requestId)
+			.append(", version=").append(version)
+			.append(", acquirerId=").append(acquirerId)
+			.append(", channel=").append(channel)
+			.append(", merchantId=").append(merchantId)
+			.append(", terminalId=").append(terminalId)
+			.append("]")
+			.toString();
 	}
 }
