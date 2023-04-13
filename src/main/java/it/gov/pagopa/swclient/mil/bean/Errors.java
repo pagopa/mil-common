@@ -94,10 +94,8 @@ public class Errors {
 	 */
 	@Override
 	public String toString() {
-		return new StringBuilder("Errors [errors=")
-			.append(errors)
-			.append(", descriptions=")
-			.append(descriptions)
+		return new StringBuilder("Errors [errors=").append(errors)
+			.append(", descriptions=").append(descriptions)
 			.append("]")
 			.toString();
 	}
