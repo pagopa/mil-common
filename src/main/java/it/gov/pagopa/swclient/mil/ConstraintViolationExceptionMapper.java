@@ -10,10 +10,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import javax.validation.ConstraintViolationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
 import io.quarkus.logging.Log;
 import it.gov.pagopa.swclient.mil.bean.Errors;
@@ -64,7 +64,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 	}
 
 	/**
-	 * @see javax.ws.rs.ext.ExceptionMapper#toResponse(Throwable)
+	 * @see jakarta.ws.rs.ext.ExceptionMapper#toResponse(Throwable)
 	 */
 	public Response toResponse(ConstraintViolationException e) {
 		Map<String, String> errors = e.getConstraintViolations().stream()
