@@ -3,7 +3,7 @@
  *
  * 20 gen 2023
  */
-package it.gov.pagopa.swclient.mil.validation.constraints;
+package it.pagopa.swclient.mil.validation.constraints;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

@@ -3,7 +3,7 @@
  * 
  * 26 nov 2022
  */
-package it.gov.pagopa.swclient.mil;
+package it.pagopa.swclient.mil;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -16,7 +16,7 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
 import io.quarkus.logging.Log;
-import it.gov.pagopa.swclient.mil.bean.Errors;
+import it.pagopa.swclient.mil.bean.Errors;
 
 /**
  * Normalize the body of Constraint Violation Exception (BAD REQUEST) handled directly by Quarkus

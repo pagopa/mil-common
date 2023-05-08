@@ -3,7 +3,7 @@
  *
  * 28 nov 2022
  */
-package it.gov.pagopa.swclient.mil;
+package it.pagopa.swclient.mil;
 
 import java.io.IOException;
 

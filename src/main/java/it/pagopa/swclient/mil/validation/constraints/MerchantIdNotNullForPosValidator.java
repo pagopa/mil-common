@@ -3,13 +3,12 @@
  *
  * 20 gen 2023
  */
-package it.gov.pagopa.swclient.mil.validation.constraints;
+package it.pagopa.swclient.mil.validation.constraints;
 
+import it.pagopa.swclient.mil.bean.Channel;
+import it.pagopa.swclient.mil.bean.CommonHeader;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
-import it.gov.pagopa.swclient.mil.bean.Channel;
-import it.gov.pagopa.swclient.mil.bean.CommonHeader;
 
 /**
  * If Channel equals to POS, the MerchantId must not be null.

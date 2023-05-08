@@ -3,15 +3,15 @@
  *
  * 26 nov 2022
  */
-package it.gov.pagopa.swclient.mil.bean;
+package it.pagopa.swclient.mil.bean;
 
+import it.pagopa.swclient.mil.ErrorCode;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.HeaderParam;
 
-import it.gov.pagopa.swclient.mil.ErrorCode;
-import it.gov.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
+import it.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
 
 /**
  * Common header attributes
