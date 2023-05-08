@@ -3,7 +3,7 @@
  *
  * 6 apr 2023
  */
-package it.gov.pagopa.swclient.mil.bean;
+package it.pagopa.swclient.mil.bean;
 
 /**
  * 

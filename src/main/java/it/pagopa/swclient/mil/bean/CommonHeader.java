@@ -3,15 +3,15 @@
  *
  * 26 nov 2022
  */
-package it.gov.pagopa.swclient.mil.bean;
+package it.pagopa.swclient.mil.bean;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import javax.ws.rs.HeaderParam;
+import it.pagopa.swclient.mil.ErrorCode;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import jakarta.ws.rs.HeaderParam;
 
-import it.gov.pagopa.swclient.mil.ErrorCode;
-import it.gov.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
+import it.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
 
 /**
  * Common header attributes

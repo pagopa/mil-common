@@ -3,13 +3,12 @@
  *
  * 20 gen 2023
  */
-package it.gov.pagopa.swclient.mil.validation.constraints;
+package it.pagopa.swclient.mil.validation.constraints;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
-import it.gov.pagopa.swclient.mil.bean.Channel;
-import it.gov.pagopa.swclient.mil.bean.CommonHeader;
+import it.pagopa.swclient.mil.bean.Channel;
+import it.pagopa.swclient.mil.bean.CommonHeader;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * If Channel equals to POS, the MerchantId must not be null.
@@ -18,7 +17,7 @@ import it.gov.pagopa.swclient.mil.bean.CommonHeader;
  */
 public class MerchantIdNotNullForPosValidator implements ConstraintValidator<MerchantIdNotNullForPos, CommonHeader> {
 	/**
-	 * @see javax.validation.ConstraintValidator#isValid(Object, ConstraintValidatorContext)
+	 * @see jakarta.validation.ConstraintValidator#isValid(Object, ConstraintValidatorContext)
 	 */
 	@Override
 	public boolean isValid(CommonHeader commonHeader, ConstraintValidatorContext context) {
