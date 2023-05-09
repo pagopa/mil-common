@@ -82,7 +82,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 				}
 				return new Error(errorCode, message);
 			})
-			.collect(Collectors.toMap(Error::getCode, Error::getDescription));
+			.collect(Collectors.toMap(Error::getCode, Error::getDescription, (value1, value2) -> value1));
 
 		return Response
 			.status(Response.Status.BAD_REQUEST.getStatusCode())
