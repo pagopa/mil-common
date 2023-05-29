@@ -397,6 +397,12 @@
       "sha256": "LCxbfByd8uYohfSWydvcfO63dqxSJsJG51luCsRnPgE="
     },
     {
+      "artifactId": "native-linux-x86_64",
+      "groupId": "com.aayushatharva.brotli4j",
+      "version": "1.11.0",
+      "sha256": "bD-neL_jA9OBHsi6E-qQisZH9ymMf_HGOptXgpF18m0="
+    },
+    {
       "artifactId": "netty-codec-haproxy",
       "groupId": "io.netty",
       "version": "4.1.90.Final",
