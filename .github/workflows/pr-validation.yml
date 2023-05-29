@@ -59,10 +59,10 @@ jobs:
       - name: Setup Maven and settings.xml
         run: |
           mkdir -p ${{ runner.temp }}/maven
-          tar -xvf ${{ runner.temp }}/maven_setup.tar.gz -C ${{ runner.temp }}/maven .
+          tar -xvf ${{ runner.temp }}/maven_setup.tar.gz -C ${{ runner.temp }}
           echo "<settings><servers><server><id>github</id><username>${{ secrets.GIT_USER }}</username><password>${{ secrets.GIT_PAT }}</password></server></servers></settings>" >> ${{ runner.temp }}/settings.xml
 
       - name: Execute unit-testing
         run: |
-          ${{ runner.temp }}/maven/bin/mvn -v
-          ${{ runner.temp }}/maven/bin/mvn clean test -s ${{ runner.temp }}/settings.xml --no-transfer-progress
+          ${{ runner.temp }}/maven/apache-maven-3.9.2/bin/mvn -v
+          ${{ runner.temp }}/maven/apache-maven-3.9.2/bin/mvn clean test -s ${{ runner.temp }}/settings.xml --no-transfer-progress
