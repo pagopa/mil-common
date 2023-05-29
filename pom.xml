@@ -57,6 +57,13 @@
 			<artifactId>quarkus-resteasy-reactive-jackson</artifactId>
 		</dependency>
 	</dependencies>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/pagopa/depcheck</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<plugins>
@@ -75,6 +82,33 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<plugin>
+				<groupId>it.pagopa.maven</groupId>
+				<artifactId>depcheck</artifactId>
+				<version>1.0.4</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<fileName>dep-sha256.json</fileName>
+					<includePlugins>false</includePlugins>
+					<includeParent>false</includeParent>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/pagopa/mil-common</url>
+		</repository>
+	</distributionManagement>
 </project>
