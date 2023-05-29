@@ -69,4 +69,4 @@ jobs:
           echo "<settings><servers><server><id>github</id><username>${{ env.GIT_USER }}</username><password>${{ env.GIT_PAT }}</password></server></servers></settings>" >> $M2_HOME/settings.xml
 
       - name: Execute unit-testing
-        run: mvn clean test -s $M2_HOME/settings.xml
+        run: mvn clean test -s ${{ env.M2_HOME }}/settings.xml
