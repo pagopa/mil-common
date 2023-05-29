@@ -65,6 +65,5 @@ jobs:
 
       - name: Execute unit-testing
         run: |
-          echo ${{ env.PATH }}
-          mvn -v
-          mvn clean test -s ${{ runner.temp }}/settings.xml --no-transfer-progress
+          ${{ runner.temp }}/maven/bin/mvn -v
+          ${{ runner.temp }}/maven/bin/mvn clean test -s ${{ runner.temp }}/settings.xml --no-transfer-progress
