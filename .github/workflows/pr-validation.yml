@@ -60,6 +60,7 @@ jobs:
         run: |
           mkdir -p ${{ runner.temp }}/maven
           tar -xvf ${{ runner.temp }}/maven_setup.tar.gz -C ${{ runner.temp }}
+          ls ${{ runner.temp }}/maven
           echo "<settings><servers><server><id>github</id><username>${{ secrets.GIT_USER }}</username><password>${{ secrets.GIT_PAT }}</password></server></servers></settings>" >> ${{ runner.temp }}/settings.xml
 
       - name: Execute unit-testing
