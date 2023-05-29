@@ -64,9 +64,9 @@ jobs:
           export M2=$M2_HOME/bin 
           export MAVEN_OPTS=-Xmx512m 
           export PATH=$M2:$PATH
-          export GITHUB_USER=${{ secrets.GITHUB_USER }}
-          export GITHUB_PAT=${{ secrets.GITHUB_PAT }}
-          echo "<settings><servers><server><id>github</id><username>${env.GITHUB_USER}</username><password>${env.GITHUB_PAT}</password></server></servers></settings>" >> $M2_HOME/settings.xml
+          export GIT_USER=${{ secrets.GIT_USER }}
+          export GIT_PAT=${{ secrets.GIT_PAT }}
+          echo "<settings><servers><server><id>github</id><username>${env.GIT_USER}</username><password>${env.GIT_PAT}</password></server></servers></settings>" >> $M2_HOME/settings.xml
 
       - name: Execute unit-testing
         run: mvn clean test -s $M2_HOME/settings.xml
