@@ -66,7 +66,9 @@ jobs:
           export PATH=$M2:$PATH
           export GIT_USER=${{ secrets.GIT_USER }}
           export GIT_PAT=${{ secrets.GIT_PAT }}
-          echo "<settings><servers><server><id>github</id><username>${{ env.GIT_USER }}</username><password>${{ env.GIT_PAT }}</password></server></servers></settings>" >> $M2_HOME/settings.xml
+          echo "<settings><servers><server><id>github</id><username>${{ env.GIT_USER }}</username><password>${{ env.GIT_PAT }}</password></server></servers></settings>" >> ${{ runner.temp }}/settings.xml
 
       - name: Execute unit-testing
-        run: mvn clean test -s ${{ env.M2_HOME }}/settings.xml
+        run: |
+          mvn -v
+          mvn clean test -s ${{ runner.temp }}/settings.xml
