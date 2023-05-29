@@ -39,29 +39,29 @@ jobs:
 
       - name: Download JDK and verify its hash
         run: |
-          echo "e9458b38e97358850902c2936a1bb5f35f6cffc59da9fcd28c63eab8dbbfbc3b  ${{ RUNNER_TEMP }}/jdk_setup.tar.gz" >> ${{ RUNNER_TEMP }}/jdk_setup.sha256
-          curl -L "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.7_7.tar.gz" -o "${{ RUNNER_TEMP }}/jdk_setup.tar.gz"
-          sha256sum --check --status "${{ RUNNER_TEMP }}/jdk_setup.sha256"
+          echo "e9458b38e97358850902c2936a1bb5f35f6cffc59da9fcd28c63eab8dbbfbc3b  ${{ env.RUNNER_TEMP }}/jdk_setup.tar.gz" >> ${{ env.RUNNER_TEMP }}/jdk_setup.sha256
+          curl -L "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.7_7.tar.gz" -o "${{ env.RUNNER_TEMP }}/jdk_setup.tar.gz"
+          sha256sum --check --status "${{ env.RUNNER_TEMP }}/jdk_setup.sha256"
 
       - name: Setup JDK 
         uses: actions/setup-java@5ffc13f4174014e2d4d4572b3d74c3fa61aeb2c2
         with:
           distribution: "jdkfile"
-          jdkFile: "${{ RUNNER_TEMP }}/jdk_setup.tar.gz"
+          jdkFile: "${{ env.RUNNER_TEMP }}/jdk_setup.tar.gz"
           java-version: "17"
 
       - name: Download Maven and verify its hash
         run: |
-          echo "809ef3220c6d179195c06c324cb9a6d34d8ecba566c5cfd8eb83167bc034117d  ${{ RUNNER_TEMP }}/maven_setup.tar.gz" >> ${{ RUNNER_TEMP }}/maven_setup.sha256
-          curl -L "https://dlcdn.apache.org/maven/maven-3/3.9.2/binaries/apache-maven-3.9.2-bin.tar.gz" -o "${{ RUNNER_TEMP }}/maven_setup.tar.gz"
-          sha256sum --check --status "${{ RUNNER_TEMP }}/maven_setup.sha256"
+          echo "809ef3220c6d179195c06c324cb9a6d34d8ecba566c5cfd8eb83167bc034117d  ${{ env.RUNNER_TEMP }}/maven_setup.tar.gz" >> ${{ env.RUNNER_TEMP }}/maven_setup.sha256
+          curl -L "https://dlcdn.apache.org/maven/maven-3/3.9.2/binaries/apache-maven-3.9.2-bin.tar.gz" -o "${{ env.RUNNER_TEMP }}/maven_setup.tar.gz"
+          sha256sum --check --status "${{ env.RUNNER_TEMP }}/maven_setup.sha256"
 
       - name: Setup Maven and settings.xml
         run: |
-          mkdir -p ${{ RUNNER_TEMP }}/maven
-          tar -xvf ${{ RUNNER_TEMP }}/maven_setup.tar.gz -C ${{ RUNNER_TEMP }}/maven --strip-components=1
-          export PATH=${{ RUNNER_TEMP }}/maven/bin:$PATH
-          echo "<settings><servers><server><id>github</id><username>${{ secrets.GIT_USER }}</username><password>${{ secrets.GIT_PAT }}</password></server></servers></settings>" >> ${{ RUNNER_TEMP }}/settings.xml
+          mkdir -p ${{ env.RUNNER_TEMP }}/maven
+          tar -xvf ${{ env.RUNNER_TEMP }}/maven_setup.tar.gz -C ${{ env.RUNNER_TEMP }}/maven --strip-components=1
+          export PATH=${{ env.RUNNER_TEMP }}/maven/bin:$PATH
+          echo "<settings><servers><server><id>github</id><username>${{ secrets.GIT_USER }}</username><password>${{ secrets.GIT_PAT }}</password></server></servers></settings>" >> ${{ env.RUNNER_TEMP }}/settings.xml
 
       - name: Execute unit-testing
         run: |
