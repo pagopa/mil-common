@@ -60,15 +60,9 @@ jobs:
         run: |
           mkdir -p ${{ runner.temp }}/maven
           tar -xvf ${{ runner.temp }}/maven_setup.tar.gz -C ${{ runner.temp }}/maven
-          export M2_HOME=${{ runner.temp }}/maven 
-          export M2=$M2_HOME/bin 
-          export MAVEN_OPTS=-Xmx512m 
-          export PATH=$M2:$PATH
-          export GIT_USER=${{ secrets.GIT_USER }}
-          export GIT_PAT=${{ secrets.GIT_PAT }}
-          echo "<settings><servers><server><id>github</id><username>${{ env.GIT_USER }}</username><password>${{ env.GIT_PAT }}</password></server></servers></settings>" >> ${{ runner.temp }}/settings.xml
+          echo "<settings><servers><server><id>github</id><username>${{ secrets.GIT_USER }}</username><password>${{ secrets.GIT_PAT }}</password></server></servers></settings>" >> ${{ runner.temp }}/settings.xml
 
       - name: Execute unit-testing
         run: |
-          mvn -v
-          mvn clean test -s ${{ runner.temp }}/settings.xml
+          ${{ runner.temp }}/maven/bin/mvn -v
+          ${{ runner.temp }}/maven/bin/mvn clean test -s ${{ runner.temp }}/settings.xml --no-transfer-progress
