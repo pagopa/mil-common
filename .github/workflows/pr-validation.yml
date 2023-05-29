@@ -64,5 +64,6 @@ jobs:
 
       - name: Execute unit-testing
         run: |
+          ls ${{ runner.temp }}/maven
           ${{ runner.temp }}/maven/bin/mvn -v
           ${{ runner.temp }}/maven/bin/mvn clean test -s ${{ runner.temp }}/settings.xml --no-transfer-progress
