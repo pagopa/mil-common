@@ -10,6 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
@@ -25,6 +27,9 @@ import it.pagopa.swclient.mil.bean.Errors;
  */
 @Provider
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
+	@ConfigProperty(name = "returnRawConstraintViolationDescription", defaultValue = "false")
+	boolean returnRawConstraintViolationDescription;
+
 	/**
 	 * 
 	 */
@@ -83,6 +88,10 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 				return new Error(errorCode, message);
 			})
 			.collect(Collectors.toMap(Error::getCode, Error::getDescription, (value1, value2) -> value1));
+
+		if (returnRawConstraintViolationDescription) {
+			errors.put("orig", e.toString());
+		}
 
 		return Response
 			.status(Response.Status.BAD_REQUEST.getStatusCode())
