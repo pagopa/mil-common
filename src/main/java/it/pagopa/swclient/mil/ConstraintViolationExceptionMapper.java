@@ -21,12 +21,15 @@ import io.quarkus.logging.Log;
 import it.pagopa.swclient.mil.bean.Errors;
 
 /**
- * Normalize the body of Constraint Violation Exception (BAD REQUEST) handled directly by Quarkus
+ * Normalize the body of Constraint Violation Exception (BAD REQUEST) handled directly by Quarkus.
  * 
  * @author Antonio Tarricone
  */
 @Provider
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
+	/*
+	 * 
+	 */
 	@ConfigProperty(name = "returnRawConstraintViolationDescription", defaultValue = "false")
 	boolean returnRawConstraintViolationDescription;
 

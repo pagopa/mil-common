@@ -6,6 +6,7 @@
 package it.pagopa.swclient.mil;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
@@ -25,7 +26,7 @@ public class MappedDiagnosticContextFilter implements ContainerRequestFilter {
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 		String requestId = requestContext.getHeaderString("RequestId");
 		if (requestId == null) {
-			requestId = "n/a";
+			requestId = UUID.randomUUID().toString();
 		}
 		MDC.put("requestId", requestId);
 	}
