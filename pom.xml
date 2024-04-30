@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>it.pagopa.swclient.mil</groupId>
@@ -6,7 +8,8 @@
 	<version>2.1.0</version>
 	<packaging>jar</packaging>
 
-	<description>Common classes for Multi-channel Integration Layer of SW Client Project</description>
+	<description>Common classes for Multi-channel Integration Layer of SW Client
+		Project</description>
 
 	<developers>
 		<developer>
@@ -15,20 +18,38 @@
 			<organization>PagoPA S.p.A.</organization>
 		</developer>
 	</developers>
-	
+
 	<properties>
-		<compiler-plugin.version>3.11.0</compiler-plugin.version>
-		<java.version>17</java.version>
+		<!-- Java version -->
+		<java.version>21</java.version>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<!-- Encodings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Quarkus version -->
 		<quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
 		<quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-		<quarkus.platform.version>3.0.2.Final</quarkus.platform.version>
+		<quarkus.platform.version>3.9.5</quarkus.platform.version>
+		<!-- Plugins version -->
+		<compiler-plugin.version>3.12.1</compiler-plugin.version>
+		<surefire-plugin.version>3.2.5</surefire-plugin.version>
+		<depcheck-plugin.version>1.2.1</depcheck-plugin.version>
+		<jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
+		<sonar-plugin.version>3.11.0.3922</sonar-plugin.version>
+		<!-- Dependencies version -->
+		<lombok.version>1.18.32</lombok.version>
+		<assertj-core.version>3.25.3</assertj-core.version>
+		<!-- Sonar configuration -->
+		<sonar.host.url>https://sonarcloud.io:443/</sonar.host.url>
+		<sonar.organization>pagopa</sonar.organization>
+		<sonar.projectKey>pagopa_mil-common</sonar.projectKey>
+		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
+		<sonar.qualitygate.timeout>300</sonar.qualitygate.timeout>
+		<sonar.coverage.jacoco.xmlReportPaths>target/jacoco-report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<!-- Other properties -->
 		<skipITs>true</skipITs>
-		<surefire-plugin.version>3.0.0-M9</surefire-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -54,10 +75,47 @@
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+			<artifactId>quarkus-rest-jackson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-mongodb-panache</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-opentelemetry</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-junit5-mockito</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-jacoco</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>github</id>
@@ -82,11 +140,11 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>it.pagopa.maven</groupId>
 				<artifactId>depcheck</artifactId>
-				<version>1.0.4</version>
+				<version>${depcheck-plugin.version}</version>
 				<executions>
 					<execution>
 						<phase>validate</phase>
@@ -97,13 +155,45 @@
 				</executions>
 				<configuration>
 					<fileName>dep-sha256.json</fileName>
+					<addFileName>dep-sha256-man.json</addFileName>
 					<includePlugins>false</includePlugins>
 					<includeParent>false</includeParent>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
+	<profiles>
+		<profile>
+			<id>validate</id>
+			<activation>
+				<property>
+					<name>validate</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- SCA with Sonar -->
+					<plugin>
+						<groupId>org.sonarsource.scanner.maven</groupId>
+						<artifactId>sonar-maven-plugin</artifactId>
+						<version>${sonar-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sca_with_sonar</id>
+								<!-- after test -->
+								<phase>test</phase>
+								<goals>
+									<goal>sonar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<distributionManagement>
 		<repository>
 			<id>github</id>
