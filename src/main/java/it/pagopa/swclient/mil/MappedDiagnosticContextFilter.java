@@ -8,12 +8,12 @@ package it.pagopa.swclient.mil;
 import java.io.IOException;
 import java.util.UUID;
 
+import org.jboss.logging.MDC;
+
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.PreMatching;
 import jakarta.ws.rs.ext.Provider;
-
-import org.jboss.logging.MDC;
 
 /**
  * 

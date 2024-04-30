@@ -6,18 +6,29 @@
 package it.pagopa.swclient.mil.bean;
 
 import it.pagopa.swclient.mil.ErrorCode;
+import it.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.HeaderParam;
-
-import it.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * Common header attributes
  * 
  * @author Antonio Tarricone
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
 @MerchantIdNotNullForPos(message = ErrorCode.MERCHANT_ID_MUST_NOT_BE_NULL_FOR_POS_MSG)
 public class CommonHeader {
 	/*
@@ -67,100 +78,4 @@ public class CommonHeader {
 	@NotNull(message = ErrorCode.TERMINAL_ID_MUST_NOT_BE_NULL_MSG)
 	@Pattern(regexp = "^[0-9a-zA-Z]{1,8}$", message = ErrorCode.TERMINAL_ID_MUST_MATCH_REGEXP_MSG)
 	private String terminalId;
-
-	/**
-	 * @return the requestId
-	 */
-	public String getRequestId() {
-		return requestId;
-	}
-
-	/**
-	 * @param requestId the requestId to set
-	 */
-	public void setRequestId(String requestId) {
-		this.requestId = requestId;
-	}
-
-	/**
-	 * @return the version
-	 */
-	public String getVersion() {
-		return version;
-	}
-
-	/**
-	 * @param version the version to set
-	 */
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	/**
-	 * @return the acquirerId
-	 */
-	public String getAcquirerId() {
-		return acquirerId;
-	}
-
-	/**
-	 * @param acquirerId the acquirerId to set
-	 */
-	public void setAcquirerId(String acquirerId) {
-		this.acquirerId = acquirerId;
-	}
-
-	/**
-	 * @return the channel
-	 */
-	public String getChannel() {
-		return channel;
-	}
-
-	/**
-	 * @param channel the channel to set
-	 */
-	public void setChannel(String channel) {
-		this.channel = channel;
-	}
-
-	/**
-	 * @return the merchantId
-	 */
-	public String getMerchantId() {
-		return merchantId;
-	}
-
-	/**
-	 * @param merchantId the merchantId to set
-	 */
-	public void setMerchantId(String merchantId) {
-		this.merchantId = merchantId;
-	}
-
-	/**
-	 * @return the terminalId
-	 */
-	public String getTerminalId() {
-		return terminalId;
-	}
-
-	/**
-	 * @param terminalId the terminalId to set
-	 */
-	public void setTerminalId(String terminalId) {
-		this.terminalId = terminalId;
-	}
-
-	@Override
-	public String toString() {
-		return new StringBuilder("CommonHeader [requestId=").append(requestId)
-			.append(", version=").append(version)
-			.append(", acquirerId=").append(acquirerId)
-			.append(", channel=").append(channel)
-			.append(", merchantId=").append(merchantId)
-			.append(", terminalId=").append(terminalId)
-			.append("]")
-			.toString();
-	}
 }

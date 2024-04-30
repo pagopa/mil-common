@@ -11,12 +11,24 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * List of violations.
  * 
  * @author Antonio Tarricone
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
+@Accessors(chain = true)
 @RegisterForReflection
 @JsonInclude(Include.NON_NULL)
 public class Errors {
@@ -31,25 +43,10 @@ public class Errors {
 	private List<String> descriptions;
 
 	/**
-	 * 
-	 */
-	public Errors() {
-	}
-
-	/**
 	 * @param errors
 	 */
 	public Errors(List<String> errors) {
 		this.errors = errors;
-	}
-
-	/**
-	 * @param errors
-	 * @param descriptions
-	 */
-	public Errors(List<String> errors, List<String> descriptions) {
-		this.errors = errors;
-		this.descriptions = descriptions;
 	}
 
 	/**
@@ -59,44 +56,5 @@ public class Errors {
 	public Errors(String error, String description) {
 		errors = List.of(error);
 		descriptions = List.of(description);
-	}
-
-	/**
-	 * @return the errors
-	 */
-	public List<String> getErrors() {
-		return errors;
-	}
-
-	/**
-	 * @param errors the errors to set
-	 */
-	public void setErrors(List<String> errors) {
-		this.errors = errors;
-	}
-
-	/**
-	 * @return the descriptions
-	 */
-	public List<String> getDescriptions() {
-		return descriptions;
-	}
-
-	/**
-	 * @param descriptions the descriptions to set
-	 */
-	public void setDescriptions(List<String> descriptions) {
-		this.descriptions = descriptions;
-	}
-
-	/**
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return new StringBuilder("Errors [errors=").append(errors)
-			.append(", descriptions=").append(descriptions)
-			.append("]")
-			.toString();
 	}
 }

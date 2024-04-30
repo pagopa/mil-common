@@ -6,7 +6,6 @@
 package it.pagopa.swclient.mil.observability;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.microprofile.config.ConfigProvider;
@@ -28,7 +27,8 @@ import jakarta.interceptor.InvocationContext;
 
 /**
  * This class implements the logic to trace with OpenTelemetry standard the invocations to classes
- * which implements io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase interface.
+ * which implements io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase
+ * interface.
  * 
  * @author Antonio Tarricone
  */
@@ -41,9 +41,10 @@ public class ReactivePanacheMongoRepositoryTraceInterceptor {
 	private Tracer tracer;
 
 	/*
-	 * Methods of io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase that must not be traced.
+	 * Methods of io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase that must not
+	 * be traced.
 	 */
-	private List<Method> methodsToIgnore;
+	private List<String> methodsToIgnore;
 
 	/**
 	 * Constructor.
@@ -53,16 +54,9 @@ public class ReactivePanacheMongoRepositoryTraceInterceptor {
 	@Inject
 	ReactivePanacheMongoRepositoryTraceInterceptor(Tracer tracer) {
 		this.tracer = tracer;
-		methodsToIgnore = Arrays.asList(Object.class.getMethods());
-		try {
-			methodsToIgnore.add(ReactivePanacheMongoRepositoryBase.class.getMethod("mongoCollection"));
-			methodsToIgnore.add(ReactivePanacheMongoRepositoryBase.class.getMethod("mongoDatabase"));
-		} catch (NoSuchMethodException | SecurityException e) {
-			Log.warnf(e, "Some methods of io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase will be traced even if they should be ignored!");
-		}
-
+		methodsToIgnore = List.of("mongoCollection", "mongoDatabase");
 	}
-	
+
 	/**
 	 * This method implements the tracing logic.
 	 * 
@@ -77,8 +71,9 @@ public class ReactivePanacheMongoRepositoryTraceInterceptor {
 
 			Class<?> clazz = context.getTarget().getClass();
 			Method method = context.getMethod();
+			Log.debugf("Intercepted method: %s", method.toString());
 
-			if (!methodsToIgnore.contains(method)) {
+			if (!methodsToIgnore.contains(method.getName())) {
 				ReactiveMongoCollection<?> mongoCollection = repository.mongoCollection();
 
 				/*
@@ -97,9 +92,10 @@ public class ReactivePanacheMongoRepositoryTraceInterceptor {
 					connectionString = ConfigProvider.getConfig().getOptionalValue("quarkus.mongodb.connection-string", String.class).orElse(null);
 				} else {
 					connectionString = ConfigProvider.getConfig().getOptionalValue(String.format("quarkus.mongodb.%s.connection-string", clientName), String.class).orElse(null);
-					if (connectionString == null) {
-						connectionString = ConfigProvider.getConfig().getOptionalValue("quarkus.mongodb.connection-string", String.class).orElse(null);
-					}
+					/*
+					 * If connectionString is null the MongoClient cannot be created by Quarkus, so this point would be
+					 * not reachable!
+					 */
 				}
 
 				/*
@@ -119,12 +115,15 @@ public class ReactivePanacheMongoRepositoryTraceInterceptor {
 				/*
 				 * Proceed with the intercepted invocation.
 				 */
-				Object ret = context.proceed();
-
-				/*
-				 * End span.
-				 */
-				span.end();
+				Object ret = null;
+				try {
+					ret = context.proceed();
+				} finally {
+					/*
+					 * End span.
+					 */
+					span.end();
+				}
 
 				/*
 				 * Finish!

@@ -35,11 +35,12 @@
 		<!-- Plugins version -->
 		<compiler-plugin.version>3.12.1</compiler-plugin.version>
 		<surefire-plugin.version>3.2.5</surefire-plugin.version>
-		<depcheck-plugin.version>1.1.1</depcheck-plugin.version>
+		<depcheck-plugin.version>1.2.1</depcheck-plugin.version>
 		<jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
 		<sonar-plugin.version>3.11.0.3922</sonar-plugin.version>
 		<!-- Dependencies version -->
 		<lombok.version>1.18.32</lombok.version>
+		<assertj-core.version>3.25.3</assertj-core.version>
 		<!-- Sonar configuration -->
 		<sonar.host.url>https://sonarcloud.io:443/</sonar.host.url>
 		<sonar.organization>pagopa</sonar.organization>
@@ -92,6 +93,27 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-junit5-mockito</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-jacoco</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<pluginRepositories>
@@ -133,6 +155,7 @@
 				</executions>
 				<configuration>
 					<fileName>dep-sha256.json</fileName>
+					<addFileName>dep-sha256-man.json</addFileName>
 					<includePlugins>false</includePlugins>
 					<includeParent>false</includeParent>
 				</configuration>
