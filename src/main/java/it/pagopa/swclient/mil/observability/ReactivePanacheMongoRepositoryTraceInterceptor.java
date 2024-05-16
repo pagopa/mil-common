@@ -26,9 +26,11 @@ import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
 /**
+ * <p>
  * This class implements the logic to trace with OpenTelemetry standard the invocations to classes
- * which implements io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase
+ * which implements {@code io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase}
  * interface.
+ * </p>
  * 
  * @author Antonio Tarricone
  */

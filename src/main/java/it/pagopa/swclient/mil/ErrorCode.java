@@ -10,6 +10,9 @@ package it.pagopa.swclient.mil;
  * @author Antonio Tarricone
  */
 public final class ErrorCode {
+	/*
+	 * 
+	 */
 	public static final String MODULE_ID = "000";
 
 	/*

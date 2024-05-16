@@ -16,7 +16,9 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 /**
- * If Channel equals to POS, the MerchantId must not be null.
+ * <p>
+ * If {@code Channel} equals to {@code POS}, the {@code MerchantId} must not be null.
+ * </p>
  * 
  * @author Antonio Tarricone
  */

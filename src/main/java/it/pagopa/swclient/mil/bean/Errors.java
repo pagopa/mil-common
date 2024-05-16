@@ -19,7 +19,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * List of violations.
+ * <p>List of violations.</p>
  * 
  * @author Antonio Tarricone
  */
@@ -43,6 +43,7 @@ public class Errors {
 	private List<String> descriptions;
 
 	/**
+	 * 
 	 * @param errors
 	 */
 	public Errors(List<String> errors) {
@@ -50,6 +51,7 @@ public class Errors {
 	}
 
 	/**
+	 * 
 	 * @param error
 	 * @param description
 	 */

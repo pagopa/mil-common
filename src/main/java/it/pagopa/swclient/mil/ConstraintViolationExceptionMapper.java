@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Normalize the body of Constraint Violation Exception (BAD REQUEST) handled directly by Quarkus.
+ * <p>Normalize the body of Constraint Violation Exception (BAD REQUEST) handled directly by Quarkus.</p>
  * 
  * @author Antonio Tarricone
  */

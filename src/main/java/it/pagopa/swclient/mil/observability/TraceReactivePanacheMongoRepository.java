@@ -14,9 +14,14 @@ import java.lang.annotation.Target;
 import jakarta.interceptor.InterceptorBinding;
 
 /**
- * Annotation to mark the classes which implements
- * io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase that must be traced.
- * io.quarkus:quarkus-opentelemetry must be added among the dependecies.
+ * <p>
+ * Annotation to mark the classes which implement
+ * {@code io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase } that must be
+ * traced.
+ * </p>
+ * <p>
+ * {@code io.quarkus:quarkus-opentelemetry} must be added among the dependencies.
+ * </p>
  *
  * @author Antonio Tarricone
  */
