@@ -19,7 +19,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * Common header attributes
+ * <p>Common header attributes</p>
  * 
  * @author Antonio Tarricone
  */
