@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <p>Normalize the body of Constraint Violation Exception (BAD REQUEST) handled directly by Quarkus.</p>
+ * <p>Normalize the body of Constraint Violation Exception (400 BAD REQUEST) handled directly by Quarkus.</p>
  * 
  * @author Antonio Tarricone
  */
@@ -35,7 +35,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 		private String code;
 		private String description;
 	}
-
+	
 	/**
 	 * @see jakarta.ws.rs.ext.ExceptionMapper#toResponse(Throwable)
 	 */
