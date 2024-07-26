@@ -17,10 +17,12 @@ import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 
 /**
  * 
- * @author antonio.tarricone
+ * @author Antonio Tarricone
  */
 @QuarkusTest
 class MappedDiagnosticContextFilterTest {
@@ -34,6 +36,8 @@ class MappedDiagnosticContextFilterTest {
 	void given_request_when_requestIdIsNotNull_then_putItInMdc() throws IOException {
 		ContainerRequestContext context = mock(ContainerRequestContext.class);
 		when(context.getHeaderString("RequestId")).thenReturn("my-request-id");
+		when(context.getHeaders()).thenReturn(new MultivaluedHashMap<String, String>());
+		
 		new MappedDiagnosticContextFilter().filter(context);
 
 		assertEquals("my-request-id", MDC.get("requestId"));
@@ -46,9 +50,11 @@ class MappedDiagnosticContextFilterTest {
 	 * @throws IOException
 	 */
 	@Test
-	void given_rRequest_when_requestIdIsNull_then_putNewOneInMdc() throws IOException {
+	void given_request_when_requestIdIsNull_then_putNewOneInMdc() throws IOException {
 		ContainerRequestContext context = mock(ContainerRequestContext.class);
 		when(context.getHeaderString("RequestId")).thenReturn(null);
+		when(context.getHeaders()).thenReturn(new MultivaluedHashMap<String, String>());
+		
 		new MappedDiagnosticContextFilter().filter(context);
 
 		assertNotEquals("my-request-id", MDC.get("requestId"));

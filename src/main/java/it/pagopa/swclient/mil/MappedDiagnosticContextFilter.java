@@ -27,6 +27,7 @@ public class MappedDiagnosticContextFilter implements ContainerRequestFilter {
 		String requestId = requestContext.getHeaderString("RequestId");
 		if (requestId == null) {
 			requestId = UUID.randomUUID().toString();
+			requestContext.getHeaders().add("RequestId", requestId);
 		}
 		MDC.put("requestId", requestId);
 	}
