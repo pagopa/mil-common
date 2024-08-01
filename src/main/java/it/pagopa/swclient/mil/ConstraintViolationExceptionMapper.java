@@ -14,6 +14,7 @@ import io.quarkus.logging.Log;
 import it.pagopa.swclient.mil.bean.Errors;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import lombok.AllArgsConstructor;
@@ -60,7 +61,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 			.collect(Collectors.toMap(Error::getCode, Error::getDescription, (value1, value2) -> value1));
 
 		return Response
-			.status(Response.Status.BAD_REQUEST.getStatusCode())
+			.status(Status.BAD_REQUEST)
 			.entity(new Errors(
 				errors.keySet().stream().toList(),
 				errors.values().stream().toList()))
