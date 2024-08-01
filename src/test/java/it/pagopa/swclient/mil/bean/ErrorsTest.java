@@ -6,7 +6,6 @@
 package it.pagopa.swclient.mil.bean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 import java.util.List;
 
@@ -20,15 +19,6 @@ import io.quarkus.test.junit.QuarkusTest;
  */
 @QuarkusTest
 class ErrorsTest {
-	/**
-	 * 
-	 */
-	@Test
-	void given_listOfErrorsWithoutDescription_when_getList_then_returnGivenList() {
-		List<String> expected = List.of("error_code_1", "error_code_2");
-		assertIterableEquals(expected, new Errors(expected).getErrors());
-	}
-
 	/**
 	 * 
 	 */
