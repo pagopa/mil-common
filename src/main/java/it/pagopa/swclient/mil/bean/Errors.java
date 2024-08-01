@@ -14,6 +14,8 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -23,10 +25,11 @@ import lombok.experimental.Accessors;
  * 
  * @author Antonio Tarricone
  */
-@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
-@Setter
+@NoArgsConstructor
 @Getter
+@Setter
 @ToString
 @Accessors(chain = true)
 @RegisterForReflection
@@ -35,20 +38,13 @@ public class Errors {
 	/*
 	 * List of error codes
 	 */
-	private List<String> errors;
+	@NonNull
+	private List<String> errors; // NOSONAR
 
 	/*
 	 * List of error descriptions.
 	 */
 	private List<String> descriptions;
-
-	/**
-	 * 
-	 * @param errors
-	 */
-	public Errors(List<String> errors) {
-		this.errors = errors;
-	}
 
 	/**
 	 * 

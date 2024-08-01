@@ -9,7 +9,6 @@ import it.pagopa.swclient.mil.ErrorCode;
 import it.pagopa.swclient.mil.validation.constraints.MerchantIdNotNullForPos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.HeaderParam;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,15 +35,16 @@ public class CommonHeader {
 	 */
 	@HeaderParam(HeaderParamName.REQUEST_ID)
 	@NotNull(message = ErrorCode.REQUEST_ID_MUST_NOT_BE_NULL_MSG)
-	@Pattern(regexp = ValidationPattern.REQUEST_ID, message = ErrorCode.REQUEST_ID_MUST_MATCH_REGEXP_MSG)
+	// It's verified by it.pagopa.swclient.mil.CommonHeadersValidatorFilter:
+	// @Pattern(regexp = ValidationPattern.REQUEST_ID, message = ErrorCode.REQUEST_ID_MUST_MATCH_REGEXP_MSG)
 	private String requestId;
 
 	/*
 	 * Version of the required API
 	 */
 	@HeaderParam(HeaderParamName.VERSION)
-	@Size(max = 64, message = ErrorCode.VERSION_SIZE_MUST_BE_AT_MOST_MAX_MSG)
-	@Pattern(regexp = ValidationPattern.VERSION, message = ErrorCode.VERSION_MUST_MATCH_REGEXP_MSG)
+	// It's verified by it.pagopa.swclient.mil.CommonHeadersValidatorFilter:
+	// @Pattern(regexp = ValidationPattern.VERSION, message = ErrorCode.VERSION_MUST_MATCH_REGEXP_MSG)
 	private String version;
 
 	/*

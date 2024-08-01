@@ -20,10 +20,12 @@ import io.quarkus.logging.Log;
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase;
 import io.quarkus.mongodb.reactive.ReactiveMongoCollection;
+import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
+import jakarta.ws.rs.Priorities;
 
 /**
  * <p>
@@ -36,6 +38,7 @@ import jakarta.interceptor.InvocationContext;
  */
 @TraceReactivePanacheMongoRepository
 @Interceptor
+@Priority(Priorities.USER)
 public class ReactivePanacheMongoRepositoryTraceInterceptor {
 	/*
 	 * 
