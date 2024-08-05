@@ -16,6 +16,9 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
+ * <p>
+ * Personal Data Vault output class.
+ * </p>
  * 
  * @author Antonio Tarricone
  */
@@ -27,6 +30,11 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Token {
+	/**
+	 * <p>
+	 * Protected value of personal data.
+	 * </p>
+	 */
 	@JsonProperty("token")
 	private String value;
 }

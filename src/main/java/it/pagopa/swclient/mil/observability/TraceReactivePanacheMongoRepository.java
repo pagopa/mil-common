@@ -16,7 +16,7 @@ import jakarta.interceptor.InterceptorBinding;
 /**
  * <p>
  * Annotation to mark the classes which implement
- * {@code io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase } that must be
+ * {@link io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase} that must be
  * traced.
  * </p>
  * <p>

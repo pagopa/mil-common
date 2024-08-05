@@ -40,21 +40,27 @@ import jakarta.ws.rs.Priorities;
 @Interceptor
 @Priority(Priorities.USER)
 public class ReactivePanacheMongoRepositoryTraceInterceptor {
-	/*
-	 * 
+	/**
+	 * <p>
+	 * OTel tracer.
+	 * </p>
 	 */
 	private Tracer tracer;
 
-	/*
+	/**
+	 * <p>
 	 * Methods of io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepositoryBase that must not
 	 * be traced.
+	 * </p>
 	 */
 	private List<String> methodsToIgnore;
 
 	/**
+	 * <p>
 	 * Constructor.
+	 * </p>
 	 * 
-	 * @param tracer
+	 * @param tracer OTel tracer.
 	 */
 	@Inject
 	ReactivePanacheMongoRepositoryTraceInterceptor(Tracer tracer) {
@@ -63,11 +69,13 @@ public class ReactivePanacheMongoRepositoryTraceInterceptor {
 	}
 
 	/**
+	 * <p>
 	 * This method implements the tracing logic.
+	 * </p>
 	 * 
-	 * @param context
-	 * @return
-	 * @throws Exception
+	 * @param context {@link jakarta.interceptor.InvocationContext}
+	 * @return Output returned by intercepted method.
+	 * @throws Exception Exception thrown by intercepted method.
 	 */
 	@AroundInvoke
 	Object trace(InvocationContext context) throws Exception {

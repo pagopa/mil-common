@@ -29,9 +29,31 @@ import jakarta.validation.Payload;
 	MerchantIdNotNullForPosValidator.class
 })
 public @interface MerchantIdNotNullForPos {
+	/**
+	 * <p>
+	 * Default key for creating error messages in case the constraint is violated.
+	 * </p>
+	 * 
+	 * @return Default key for creating error messages in case the constraint is violated
+	 */
 	String message() default "";
 
+	/**
+	 * <p>
+	 * Validation groups to which the constraint belongs.
+	 * </p>
+	 * 
+	 * @return Validation groups to which the constraint belongs
+	 */
 	Class<?>[] groups() default {};
 
+	/**
+	 * <p>
+	 * Can be used by clients of the Bean Validation API to assign custom payload objects to a
+	 * constraint.
+	 * </p>
+	 * 
+	 * @return Custom payload objects to a constraint
+	 */
 	Class<? extends Payload>[] payload() default {};
 }

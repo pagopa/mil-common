@@ -21,23 +21,53 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <p>Normalize the body of Constraint Violation Exception (400 BAD REQUEST) handled directly by Quarkus.</p>
+ * <p>
+ * Normalize the body of Constraint Violation Exception (400 BAD REQUEST) handled directly by
+ * Quarkus.
+ * </p>
  * 
  * @author Antonio Tarricone
  */
 @Provider
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
-	/*
-	 * 
+	/**
+	 * <p>
+	 * Internal comfort class to store error details.
+	 * </p>
 	 */
 	@AllArgsConstructor
 	@Getter
 	private class Error {
+		/**
+		 * <p>
+		 * Error code.
+		 * </p>
+		 */
 		private String code;
+
+		/**
+		 * <p>
+		 * Error message.
+		 * </p>
+		 */
 		private String description;
 	}
-	
+
 	/**
+	 * <p>
+	 * Default constructor.
+	 * </p>
+	 */
+	public ConstraintViolationExceptionMapper() {
+		// Default constructor.
+	}
+
+	/**
+	 * <p>
+	 * Normalize the body of Constraint Violation Exception (400 BAD REQUEST) handled directly by
+	 * Quarkus.
+	 * </p>
+	 * 
 	 * @see jakarta.ws.rs.ext.ExceptionMapper#toResponse(Throwable)
 	 */
 	public Response toResponse(ConstraintViolationException e) {

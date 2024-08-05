@@ -19,6 +19,19 @@ import jakarta.validation.ConstraintValidatorContext;
  */
 public class MerchantIdNotNullForPosValidator implements ConstraintValidator<MerchantIdNotNullForPos, CommonHeader> {
 	/**
+	 * <p>
+	 * Default constructor.
+	 * </p>
+	 */
+	public MerchantIdNotNullForPosValidator() {
+		// Default constructor.
+	}
+
+	/**
+	 * <p>
+	 * If {@code Channel} equals to {@code POS}, the {@code MerchantId} must not be null.
+	 * </p>
+	 * 
 	 * @see jakarta.validation.ConstraintValidator#isValid(Object, ConstraintValidatorContext)
 	 */
 	@Override
