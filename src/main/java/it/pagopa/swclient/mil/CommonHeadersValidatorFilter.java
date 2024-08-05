@@ -23,6 +23,9 @@ import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.ext.Provider;
 
 /**
+ * <p>
+ * Validates RequestId and Version headers if they are present.
+ * </p>
  * 
  * @author Antonio Tarricone
  */
@@ -30,11 +33,27 @@ import jakarta.ws.rs.ext.Provider;
 @PreMatching
 @Priority(Priorities.USER)
 public class CommonHeadersValidatorFilter implements ContainerRequestFilter {
+	/**
+	 * <p>
+	 * Default constructor.
+	 * </p>
+	 */
+	public CommonHeadersValidatorFilter() {
+		// Default constructor.
+	}
+	
+	/**
+	 * <p>
+	 * Validates RequestId and Version headers if they are present.
+	 * </p>
+	 * 
+	 * @see jakarta.ws.rs.container.ContainerRequestFilter#filter(ContainerRequestContext)
+	 */
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 		List<String> errorCodes = new LinkedList<>();
 		List<String> errorMsgs = new LinkedList<>();
-		
+
 		String requestId = requestContext.getHeaderString(HeaderParamName.REQUEST_ID);
 		if (requestId != null && !requestId.matches(ValidationPattern.REQUEST_ID)) {
 			errorCodes.add(ErrorCode.REQUEST_ID_MUST_MATCH_REGEXP);
@@ -46,7 +65,7 @@ public class CommonHeadersValidatorFilter implements ContainerRequestFilter {
 			errorCodes.add(ErrorCode.VERSION_MUST_MATCH_REGEXP);
 			errorCodes.add(ErrorCode.VERSION_MUST_MATCH_REGEXP_MSG);
 		}
-		
+
 		if (!errorCodes.isEmpty()) {
 			Response response = Response.status(Status.BAD_REQUEST)
 				.entity(new Errors(errorCodes, errorMsgs))

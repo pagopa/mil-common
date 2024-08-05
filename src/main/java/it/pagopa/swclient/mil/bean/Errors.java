@@ -21,7 +21,9 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * <p>List of violations.</p>
+ * <p>
+ * List of errors.
+ * </p>
  * 
  * @author Antonio Tarricone
  */
@@ -35,21 +37,28 @@ import lombok.experimental.Accessors;
 @RegisterForReflection
 @JsonInclude(Include.NON_NULL)
 public class Errors {
-	/*
-	 * List of error codes
+	/**
+	 * <p>
+	 * List of error codes.
+	 * </p>
 	 */
 	@NonNull
 	private List<String> errors; // NOSONAR
 
-	/*
-	 * List of error descriptions.
+	/**
+	 * <p>
+	 * List of error messages.
+	 * </p>
 	 */
 	private List<String> descriptions;
 
 	/**
+	 * <p>
+	 * Constructor for a single couple error/description.
+	 * </p>
 	 * 
-	 * @param error
-	 * @param description
+	 * @param error       Error code.
+	 * @param description Error message.
 	 */
 	public Errors(String error, String description) {
 		errors = List.of(error);

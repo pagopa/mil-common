@@ -8,14 +8,25 @@
 	<version>2.5.0</version>
 	<packaging>jar</packaging>
 
+	<name>mil-common</name>
 	<description>Common classes for Multi-channel Integration Layer of SW Client
 		Project</description>
-
+	<url>https://pagopa.github.io/mil-common/</url>
+	<organization>
+		<name>PagoPA S.p.A.</name>
+		<url>https://www.pagopa.it</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Mozilla Public License 2.0</name>
+		</license>
+	</licenses>
 	<developers>
 		<developer>
 			<name>Antonio Tarricone</name>
 			<email>antonio.tarricone@pagopa.it</email>
 			<organization>PagoPA S.p.A.</organization>
+			<organizationUrl>https://www.pagopa.it</organizationUrl>
 		</developer>
 	</developers>
 
@@ -38,6 +49,10 @@
 		<depcheck-plugin.version>1.2.1</depcheck-plugin.version>
 		<jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
 		<sonar-plugin.version>3.11.0.3922</sonar-plugin.version>
+		<maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+		<maven-project-info-reports-plugin.version>3.5.0</maven-project-info-reports-plugin.version>
+		<maven-javadoc-plugin.version>3.7.0</maven-javadoc-plugin.version>
+		<github-site-maven-plugin.version>0.12</github-site-maven-plugin.version>
 		<!-- Dependencies version -->
 		<lombok.version>1.18.32</lombok.version>
 		<assertj-core.version>3.25.3</assertj-core.version>
@@ -50,6 +65,8 @@
 		<sonar.coverage.jacoco.xmlReportPaths>target/jacoco-report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<!-- Other properties -->
 		<skipITs>true</skipITs>
+		<repository.name>mil-common</repository.name>
+		<repository.owner>pagopa</repository.owner>
 	</properties>
 
 	<dependencyManagement>
@@ -165,6 +182,26 @@
 					<includeParent>false</includeParent>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>${github-site-maven-plugin.version}</version>
+				<configuration>
+					<message>Creating site for ${project.version}</message>
+					<repositoryName>${repository.name}</repositoryName>
+					<repositoryOwner>${repository.owner}</repositoryOwner>
+					<server>github</server>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>site</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -203,7 +240,38 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/pagopa/mil-common</url>
+			<url>https://maven.pkg.github.com/${repository.owner}/${repository.name}</url>
 		</repository>
 	</distributionManagement>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${maven-site-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${maven-project-info-reports-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
+				<configuration>
+					<show>private</show>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<id>default</id>
+						<reports>
+							<report>javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
