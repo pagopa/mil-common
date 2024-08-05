@@ -64,4 +64,15 @@ public class Errors {
 		errors = List.of(error);
 		descriptions = List.of(description);
 	}
+	
+	/**
+	 * <p>
+	 * Constructor for a single error w/o description.
+	 * </p>
+	 * 
+	 * @param error       Error code.
+	 */
+	public Errors(String error) {
+		errors = List.of(error);
+	}
 }
