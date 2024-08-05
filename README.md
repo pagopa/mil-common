@@ -13,3 +13,4 @@ Common classes used by services that make up the Multi-channel Intagration Layer
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=pagopa_mil-common&metric=bugs)](https://sonarcloud.io/summary/new_code?id=pagopa_mil-common)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=pagopa_mil-common&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=pagopa_mil-common)
 
+[GitHub Pages](https://pagopa.github.io/mil-common/)
