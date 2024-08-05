@@ -5,7 +5,7 @@
  */
 package it.pagopa.swclient.mil;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -27,8 +27,10 @@ import jakarta.ws.rs.core.MultivaluedMap;
 @QuarkusTest
 class RequestIdEchoFilterTest {
 	/**
-	 * Test method for {@link it.pagopa.swclient.mil.RequestIdEchoFilter#filter(jakarta.ws.rs.container.ContainerRequestContext, jakarta.ws.rs.container.ContainerResponseContext)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link it.pagopa.swclient.mil.RequestIdEchoFilter#filter(jakarta.ws.rs.container.ContainerRequestContext, jakarta.ws.rs.container.ContainerResponseContext)}.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	void testFilter() throws IOException {
@@ -38,7 +40,7 @@ class RequestIdEchoFilterTest {
 		MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
 		ContainerResponseContext responseContext = mock(ContainerResponseContext.class);
 		when(responseContext.getHeaders()).thenReturn(headers);
-		
+
 		new RequestIdEchoFilter().filter(requestContext, responseContext);
 
 		assertEquals(List.of("my-request-id"), headers.get("RequestId"));

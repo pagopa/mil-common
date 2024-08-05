@@ -36,7 +36,7 @@ class MappedDiagnosticContextFilterTest {
 		ContainerRequestContext context = mock(ContainerRequestContext.class);
 		when(context.getHeaderString("RequestId")).thenReturn("my-request-id");
 		when(context.getHeaders()).thenReturn(new MultivaluedHashMap<String, String>());
-		
+
 		new MappedDiagnosticContextFilter().filter(context);
 
 		assertEquals("my-request-id", MDC.get("requestId"));
@@ -53,7 +53,7 @@ class MappedDiagnosticContextFilterTest {
 		ContainerRequestContext context = mock(ContainerRequestContext.class);
 		when(context.getHeaderString("RequestId")).thenReturn(null);
 		when(context.getHeaders()).thenReturn(new MultivaluedHashMap<String, String>());
-		
+
 		new MappedDiagnosticContextFilter().filter(context);
 
 		assertNotEquals("my-request-id", MDC.get("requestId"));
