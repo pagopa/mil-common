@@ -32,4 +32,16 @@ class ErrorsTest {
 		assertEquals(codes, errors.getErrors());
 		assertEquals(descriptions, errors.getDescriptions());
 	}
+	
+	/**
+	 * This is crazy but without this the quality gate is not passed!
+	 */
+	@Test
+	void given_code_when_getLists_then_returnGivenCode() {
+		List<String> codes = List.of("error_code");
+
+		Errors errors = new Errors(codes);
+
+		assertEquals(codes, errors.getErrors());
+	}
 }
