@@ -34,14 +34,11 @@ class ErrorsTest {
 	}
 	
 	/**
-	 * This is crazy but without this the quality gate is not passed!
+	 * This is crazy but without this the quality gate is not passed due to test coverage on new code!
 	 */
 	@Test
 	void given_code_when_getLists_then_returnGivenCode() {
-		List<String> codes = List.of("error_code");
-
-		Errors errors = new Errors(codes);
-
-		assertEquals(codes, errors.getErrors());
+		Errors errors = new Errors("error_code");
+		assertEquals(List.of("error_code"), errors.getErrors());
 	}
 }
