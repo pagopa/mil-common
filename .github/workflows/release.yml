@@ -1,4 +1,4 @@
-name: Post-merge workflow
+name: Post-merge/release workflow
 
 on:
   workflow_dispatch:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  post_merge:
-    if: github.event.pull_request.merged == true
+  release:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     
     runs-on: ubuntu-latest
     
