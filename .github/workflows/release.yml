@@ -36,8 +36,8 @@ jobs:
           semantic_version: 21.1.1
           branch: main
           extra_plugins: |
-            @semantic-release/release-notes-generator@44c780c6f9c1bf2643fe48b6718bd9a84b820132 # 14.0.1
-            @semantic-release/git@3e934d45f97fd07a63617c0fc098c9ed3e67d97a # 10.0.1
+            @semantic-release/release-notes-generator@14.0.1 # 44c780c6f9c1bf2643fe48b6718bd9a84b820132
+            @semantic-release/git@10.0.1 # 3e934d45f97fd07a63617c0fc098c9ed3e67d97a
           dry_run: true
 
       #
@@ -74,8 +74,8 @@ jobs:
           semantic_version: 21.1.1
           branch: main
           extra_plugins: |
-            @semantic-release/release-notes-generator@44c780c6f9c1bf2643fe48b6718bd9a84b820132 # 14.0.1
-            @semantic-release/git@3e934d45f97fd07a63617c0fc098c9ed3e67d97a # 10.0.1
+            @semantic-release/release-notes-generator@14.0.1 # 44c780c6f9c1bf2643fe48b6718bd9a84b820132
+            @semantic-release/git@10.0.1 # 3e934d45f97fd07a63617c0fc098c9ed3e67d97a
           dry_run: false
 
       #
