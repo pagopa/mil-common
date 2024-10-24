@@ -1,6 +1,11 @@
 name: Setup Java Build Environment
+description: Setup Java build environment, downloading and intalling JDK and Maven.
 inputs:
+  gh_user:
+    description: GitHub username to download dependencies.
+    required: true
   gh_token:
+    description: GitHub token to download dependencies.
     required: true
 runs:
   using: composite
@@ -68,8 +73,9 @@ runs:
     - name: Setup Maven
       shell: bash
       env:
+        GH_USER: ${{ inputs.gh_user }}
         GH_TOKEN: ${{ inputs.gh_token }}
       run: |
         mkdir ${{ runner.temp }}/maven
         tar -xvf ${{ runner.temp }}/maven_setup.tar.gz -C ${{ runner.temp }}/maven --strip-components=1
-        echo "<settings><servers><server><id>github</id><username/><password>$GH_TOKEN</password></server></servers></settings>" >> ${{ runner.temp }}/settings.xml
+        echo "<settings><servers><server><id>github</id><username>$GH_USER</username><password>$GH_TOKEN</password></server></servers></settings>" >> ${{ runner.temp }}/settings.xml

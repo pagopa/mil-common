@@ -45,6 +45,7 @@ jobs:
       - name: Setup Java Build Environment
         uses: ./.github/actions/setup-java-build-env
         with:
+          gh_user: ${{ secrets.GIT_USER }}
           gh_token: ${{ secrets.GIT_PAT }}
 
       #
