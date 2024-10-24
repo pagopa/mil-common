@@ -44,6 +44,8 @@ jobs:
       #
       - name: Setup Java Build Environment
         uses: ./.github/actions/setup-java-build-env
+        with:
+          gh_token: ${{ secrets.GIT_PAT }}
 
       #
       # Update of pom.xml with the new version + Git add + commit + push of the updated pom.xml.
