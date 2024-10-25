@@ -21,5 +21,6 @@ jobs:
           gh_token: ${{ secrets.GIT_PAT }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
       - name: run ls (as test)
+        if: always()
         shell: bash
         run: ls
