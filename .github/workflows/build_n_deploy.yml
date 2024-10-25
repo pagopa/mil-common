@@ -8,34 +8,22 @@ jobs:
     runs-on: ubuntu-22.04
     
     steps:
-      #
-      # Checkout the source code.
-      #
       - name: Checkout the source code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
         with:
           token: ${{ secrets.GIT_PAT }}
           fetch-depth: 0
 
-      #
-      # Setup Java Build Environment.
-      #
       - name: Setup Java Build Environment
         uses: ./.github/actions/setup-java-build-env
         with:
           gh_user: ${{ secrets.GIT_USER }}
           gh_token: ${{ secrets.GIT_PAT }}
 
-      #
-      # Build and deploy.
-      #
       - name: Build and deploy
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ${{ runner.temp }}/maven/bin/mvn --batch-mode deploy -Pvalidate -s ${{ runner.temp }}/settings.xml --no-transfer-progress
 
-      #
-      # Build and deploy site.
-      #
       - name: Build and deploy site
         run: ${{ runner.temp }}/maven/bin/mvn --batch-mode site -s ${{ runner.temp }}/settings.xml --no-transfer-progress
