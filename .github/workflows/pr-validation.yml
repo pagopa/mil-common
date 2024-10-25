@@ -16,13 +16,10 @@ jobs:
     steps:
       - name: Checkout the source code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
+
       - name: PR validation
         uses: pagopa/mil-actions/pr-validation@main
         with:
           gh_user: ${{ secrets.GIT_USER }}
           gh_token: ${{ secrets.GIT_PAT }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
-      - name: run ls (as test)
-        if: always()
-        shell: bash
-        run: ls
