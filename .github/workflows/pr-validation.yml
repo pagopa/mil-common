@@ -20,3 +20,6 @@ jobs:
           gh_user: ${{ secrets.GIT_USER }}
           gh_token: ${{ secrets.GIT_PAT }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
+      - name: run ls (as test)
+        shell: bash
+        run: ls
