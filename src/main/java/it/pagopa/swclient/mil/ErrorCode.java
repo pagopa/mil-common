@@ -5,6 +5,8 @@
  */
 package it.pagopa.swclient.mil;
 
+import it.pagopa.swclient.mil.bean.ValidationPattern;
+
 /**
  * <p>
  * Error codes.
@@ -117,14 +119,14 @@ public final class ErrorCode {
 	 * Error description for "Request ID must match regexp".
 	 * </p>
 	 */
-	public static final String REQUEST_ID_MUST_MATCH_REGEXP_DESCR = "Request ID must match \"{regexp}\"";
+	public static final String REQUEST_ID_MUST_MATCH_REGEXP_DESCR = "Request ID must match \"" + ValidationPattern.REQUEST_ID + "\"";
 
 	/**
 	 * <p>
 	 * Error description for "Version must match regexp".
 	 * </p>
 	 */
-	public static final String VERSION_MUST_MATCH_REGEXP_DESCR = "Version must match \"{regexp}\"";
+	public static final String VERSION_MUST_MATCH_REGEXP_DESCR = "Version must match \"" + ValidationPattern.VERSION + "\"";
 
 	/**
 	 * <p>
