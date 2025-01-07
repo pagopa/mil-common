@@ -77,7 +77,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 				String message = c.getMessage();
 				Log.debugf("Message to parse: %s", message);
 
-				Pattern pattern = Pattern.compile("\\[(.*?)\\]");
+				Pattern pattern = Pattern.compile("\\[(.{9}?)\\]");
 				Matcher matcher = pattern.matcher(message);
 				String errorCode = null;
 				if (matcher.find()) {
