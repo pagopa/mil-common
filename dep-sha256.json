@@ -2080,11 +2080,11 @@
       "sha256": "RgT43L49b6GADO0ANcerusETFpYLgItp9k5_8LHMBU0="
     },
     {
-      "id": "org.assertj:assertj-core:jar:3.27.2",
+      "id": "org.assertj:assertj-core:jar:3.27.7",
       "artifactId": "assertj-core",
       "groupId": "org.assertj",
-      "version": "3.27.2",
-      "sha256": "qAebTLZ9yh3Fx2UL8nvVkneDTGMoC2YUdZht47YC464="
+      "version": "3.27.7",
+      "sha256": "xKRFQmw8KGFmaGO4QsxOx7uxxCJv79NwttL-g9bE_w8="
     },
     {
       "id": "net.bytebuddy:byte-buddy:jar:1.14.18",
